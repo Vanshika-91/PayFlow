@@ -1,0 +1,12 @@
+{
+  "info": {"name": "PayFlow API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
+  "variable": [{"key": "baseUrl", "value": "http://localhost:8080"}, {"key": "apiKey", "value": ""}, {"key": "transactionId", "value": ""}],
+  "item": [
+    {"name": "Create payment", "request": {"method": "POST", "header": [{"key": "X-API-Key", "value": "{{apiKey}}"}, {"key": "Idempotency-Key", "value": "demo-payment-001"}, {"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\n  \"amount\": 100.00,\n  \"currency\": \"INR\",\n  \"customerId\": \"customer-123\",\n  \"paymentMethod\": \"UPI\"\n}"}, "url": "{{baseUrl}}/api/v1/payments"}},
+    {"name": "List payments", "request": {"method": "GET", "header": [{"key": "X-API-Key", "value": "{{apiKey}}"}], "url": "{{baseUrl}}/api/v1/payments?page=0&size=20"}},
+    {"name": "Filter failed payments by card", "request": {"method": "GET", "header": [{"key": "X-API-Key", "value": "{{apiKey}}"}], "url": "{{baseUrl}}/api/v1/payments?status=FAILED&paymentMethod=CARD"}},
+    {"name": "Get payment by transaction ID", "request": {"method": "GET", "header": [{"key": "X-API-Key", "value": "{{apiKey}}"}], "url": "{{baseUrl}}/api/v1/payments/{{transactionId}}"}},
+    {"name": "Analytics", "request": {"method": "GET", "header": [{"key": "X-API-Key", "value": "{{apiKey}}"}], "url": "{{baseUrl}}/api/v1/analytics"}},
+    {"name": "Health", "request": {"method": "GET", "url": "{{baseUrl}}/actuator/health"}}
+  ]
+}
